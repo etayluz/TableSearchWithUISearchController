@@ -74,38 +74,6 @@ static NSInteger keyBoardStrokeCounter = 0;
     [searchBar resignFirstResponder];
 }
 
-
-#pragma mark - UISearchControllerDelegate
-
-// Called after the search controller's search bar has agreed to begin editing or when
-// 'active' is set to YES.
-// If you choose not to present the controller yourself or do not implement this method,
-// a default presentation is performed on your behalf.
-//
-// Implement this method if the default presentation is not adequate for your purposes.
-//
-- (void)presentSearchController:(UISearchController *)searchController {
-    
-}
-
-- (void)willPresentSearchController:(UISearchController *)searchController {
-    // do something before the search controller is presented
-}
-
-- (void)didPresentSearchController:(UISearchController *)searchController {
-    // do something after the search controller is presented
-}
-
-- (void)willDismissSearchController:(UISearchController *)searchController {
-    // do something before the search controller is dismissed
-}
-
-- (void)didDismissSearchController:(UISearchController *)searchController {
-    // do something after the search controller is dismissed
-}
-
-
-
 #pragma mark - UISearchResultsUpdating
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
