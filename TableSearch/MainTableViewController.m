@@ -8,6 +8,7 @@
 #import "Result.h"
 
 #import <AFNetworking/AFNetworking.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface MainTableViewController () <UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
 
@@ -123,8 +124,11 @@ static NSInteger keyBoardStrokeCounter = 0;
             AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
             manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
             
+            [MBProgressHUD showHUDAddedTo:self.view.superview animated:YES];
             [manager GET:BaseURLString parameters:parameters progress:nil success:^(NSURLSessionTask *task, id results) {
+                [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
                 NSLog(@"JSON: %@", results);
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 NSMutableArray *searchResults = [[NSMutableArray alloc] init];
                 for (NSDictionary *result in results) {
                     NSArray *LFS = result[@"lfs"];
@@ -141,6 +145,7 @@ static NSInteger keyBoardStrokeCounter = 0;
                 tableController.results = searchResults;
                 [tableController.tableView reloadData];
             } failure:^(NSURLSessionTask *operation, NSError *error) {
+                [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
                 NSLog(@"Error: %@", error);
             }];
         }
